@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+
+import { CardImg, CardImgOverlay, CardTitle, Card } from 'reactstrap';
+
 
 class Directory extends Component {
     constructor(props) {
@@ -13,31 +15,21 @@ class Directory extends Component {
         this.setState({selectedCampsite: campsite});
     }
 
-    renderSelectedCampsite(campsite) {
-        if (campsite) {
-            return (
-                <card>
-                    <CardImg top src={campsite.image} alt={campsite.name} />
-                    <CardBody>
-                        <CardTitle>{campsite.name}</CardTitle>
-                        <CardText>{campsite.description}</CardText>
-                    </CardBody>
-                </card>
-            );
-        }
-        return <div />
+    CampsiteInfo(campsite) {
+        this.setState({selectedCampsite: campsite});
     }
+
 
     render() {
         const directory =  this.props.campsites.map(campsite => {
             return (
                 <div key={campsite.id} className="col-md-5 m-1">
-                    <card onClick={() => this.onCampsiteSelect(campsite)}>
+                    <Card onClick={() => this.onCampsiteSelect(campsite)}>
                         <CardImg width="100%" src={campsite.image} alt={campsite.name} />
                         <CardImgOverlay>
                             <CardTitle>{campsite.name}</CardTitle>
                         </CardImgOverlay>                         
-                    </card>
+                    </Card>
                 </div>
             );
         })
@@ -46,12 +38,7 @@ class Directory extends Component {
             <div className="container">
                 <div className="row">
                     {directory}
-                </div>
-                <div className="row">
-                    <div className="col-md-5 m-1">
-                        {this.renderSelectedCampsite(this.state.selectedCampsite)}
-                    </div>
-                </div>
+                </div>   
             </div>
         );
     }
