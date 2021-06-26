@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
-
 class CampsiteInfo extends React.Component {
     renderCampsite(campsite) {
         return(
@@ -23,26 +22,30 @@ class CampsiteInfo extends React.Component {
                 <div className="col-md-5 m-1">
                     <h4>Comments</h4>
                     {comments.map( comment => 
-                    <div key={comments.id}>
-                        <p>{comments.text}</p>
-                        <p>{comments.author}{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                    </div>
-                    )};
-                    
+                        <div key={comment.id} className="mb-3">
+                            <div>
+                                <p>{comment.text}</p>
+                            </div>
+                            <div>
+                            --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))};
+                            </div>
+                        </div>
+                        )}                 
                 </div>
             );
         }
     };
-
 
     render() {
         let campsite = this.props.campsite;
 
         if (campsite) {
             return (
-                <div className="row">
-                    {this.renderCampsite(this.props.campsite)}
-                    {this.renderComments(this.props.campsite.comments)}
+                <div className="container">
+                    <div className="row">
+                        {this.renderCampsite(this.props.campsite)}
+                        {this.renderComments(this.props.campsite.comments)}
+                    </div>
                 </div>
             );           
         }

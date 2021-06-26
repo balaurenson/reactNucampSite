@@ -1,30 +1,14 @@
 import React, { Component } from 'react';
-
 import { CardImg, CardImgOverlay, CardTitle, Card } from 'reactstrap';
 
 
 class Directory extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            SelectedCampsite: null
-        };
-    }
-
-    onCampsiteSelect(campsite) {
-        this.setState({selectedCampsite: campsite});
-    }
-
-    CampsiteInfo(campsite) {
-        this.setState({selectedCampsite: campsite});
-    }
-
 
     render() {
         const directory =  this.props.campsites.map(campsite => {
             return (
                 <div key={campsite.id} className="col-md-5 m-1">
-                    <Card onClick={() => this.onCampsiteSelect(campsite)}>
+                    <Card onClick={() => this.props.onClick(campsite.id)}>
                         <CardImg width="100%" src={campsite.image} alt={campsite.name} />
                         <CardImgOverlay>
                             <CardTitle>{campsite.name}</CardTitle>
@@ -39,10 +23,9 @@ class Directory extends Component {
                 <div className="row">
                     {directory}
                 </div>   
-            </div>
+           </div>
         );
     }
-}
-
+};
 
 export default Directory;
