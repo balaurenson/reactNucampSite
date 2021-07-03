@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function RenderPartner(partner) {
+function RenderPartner({partner}) {
     if (partner) {
         return (
             <React.Fragment>
@@ -27,9 +27,9 @@ function About(props) {
     const partners = props.partners.map(partner => {
         return (
             <Media tag="li" key={partner.id}>
-                render() {
+               
                     <RenderPartner partner={partner}/>
-                }
+            
             </Media>
         );
     });
